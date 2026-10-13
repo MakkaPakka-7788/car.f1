@@ -97,6 +97,27 @@
         "https://makkapakka-7788.github.io/MAKKASENTPAKKING-portfolio";
     }
   });
+ <script>
+let dotCount = 0;
+let dotTimer = null;
+
+document.addEventListener("keydown", function(e) {
+    if (e.key !== ".") return;
+
+    dotCount++;
+
+    clearTimeout(dotTimer);
+
+    dotTimer = setTimeout(function() {
+        dotCount = 0;
+    }, 700);
+
+    if (dotCount === 3) {
+        dotCount = 0;
+        window.location.href = "flashcard.html";
+    }
+});
+</script>
 </script>
 ```
 
