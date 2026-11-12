@@ -1,56 +1,161 @@
 <!doctype html>
 
 <html>
-  <head><script id="flashcard-startup-gate">
-(function(){
-  function init(){
-    var form=document.getElementById("flashcard-repo-lock-form");
-    var overlay=document.getElementById("flashcard-repo-lock");
-    if(!form||!overlay)return;
-    var input=document.getElementById("flashcard-repo-lock-input");
-    var error=document.getElementById("flashcard-repo-lock-error");
-    form.addEventListener("submit",function(e){
-      e.preventDefault();
-      if(input.value!=="pness"){error.textContent="Incorrect password. Try again.";input.select();return;}
-      form.querySelectorAll("input,button").forEach(function(el){el.disabled=true;});
-      error.textContent="UNLOCKING...";
-      var blocked=Array.from(document.querySelectorAll('script[type="application/x-flashcard-locked"]'));
-      overlay.remove();
-      (async function(){
-        for(var old of blocked){
-          var s=document.createElement("script");
-          Array.from(old.attributes).forEach(function(a){
-            if(a.name==="type"||a.name==="data-flashcard-type"||a.name==="data-flashcard-async"||a.name==="data-flashcard-defer")return;
-            s.setAttribute(a.name,a.value);
-          });
-          var originalType=old.getAttribute("data-flashcard-type");
-          if(originalType)s.type=originalType;
-          if(old.hasAttribute("data-flashcard-async"))s.async=true;else s.async=false;
-          if(old.hasAttribute("data-flashcard-defer"))s.defer=true;
-          if(old.src){
-            await new Promise(function(resolve){
-              s.onload=resolve;s.onerror=resolve;
-              (document.body||document.head).appendChild(s);
-            });
-          }else{
-            s.textContent=old.textContent;
-            (document.body||document.head).appendChild(s);
-          }
-          old.remove();
-        }
-      })();
-    });
-    input.focus();
-  }
-  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();
-})();
-</script>
+  <head><script id="flashcard-startup-gate">(function(){function init(){var form=document.getElementById("flashcard-repo-lock-form"),overlay=document.getElementById("flashcard-repo-lock");if(!form||!overlay)return;var input=document.getElementById("flashcard-repo-lock-input"),error=document.getElementById("flashcard-repo-lock-error");form.addEventListener("submit",function(e){e.preventDefault();if(input.value!=="pness"){error.textContent="Incorrect password. Try again.";input.select();return;}var blocked=Array.from(document.querySelectorAll('script[type="application/x-flashcard-locked"]'));overlay.remove();(async function(){for(var old of blocked){var s=document.createElement("script");Array.from(old.attributes).forEach(function(a){if(["type","data-flashcard-type","data-flashcard-async","data-flashcard-defer"].includes(a.name))return;s.setAttribute(a.name,a.value);});var t=old.getAttribute("data-flashcard-type");if(t)s.type=t;s.async=old.hasAttribute("data-flashcard-async");if(old.hasAttribute("data-flashcard-defer"))s.defer=true;if(old.src){await new Promise(function(resolve){s.onload=resolve;s.onerror=resolve;(document.body||document.head).appendChild(s);});}else{s.textContent=old.textContent;(document.body||document.head).appendChild(s);}old.remove();}})();});input.focus();}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();})();</script>
     <meta charset="utf-8" />
 
 ```
 <title>Flashcard.com</title>
 
 <!-- Google tag (gtag.js) -->
+<script type="application/x-flashcard-locked" data-flashcard-type="" data-flashcard-async="1"
+  src="https://www.googletagmanager.com/gtag/js?id=G-TW2VBSRKFT"
+></script>
 
+<script type="application/x-flashcard-locked" data-flashcard-type="">
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+
+  gtag("js", new Date());
+  gtag("config", "G-TW2VBSRKFT");
+</script>
+
+<link
+  rel="preload"
+  href="forced_square.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin="anonymous"
+/>
+
+<link
+  rel="preload"
+  href="images/logo.svg"
+  as="image"
+  type="image/svg+xml"
+/>
+
+<link
+  rel="preload"
+  href="images/discord.svg"
+  as="image"
+  type="image/svg+xml"
+/>
+
+<link rel="manifest" href="manifest.json" />
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no"
+/>
+
+<script type="application/x-flashcard-locked" data-flashcard-type="">
+  window.polytrackModConfiguration = {
+    unblocked: true,
+    modName: "PolyUnblocked",
+    author: "Unblocker",
+  };
+</script>
+
+<script type="application/x-flashcard-locked" data-flashcard-type="" data-flashcard-defer="1" src="error_screen.bundle.js"></script>
+<script type="application/x-flashcard-locked" data-flashcard-type="" data-flashcard-defer="1" src="main.bundle.js"></script>
+```
+
+  
+<script type="application/x-flashcard-locked" data-flashcard-type="">
+/* MakkaPakka RRR home shortcut */
+(function () {
+  let rrrTapCount = 0;
+  let rrrResetTimer = null;
+
+  window.addEventListener("keydown", function (event) {
+    if (!event.key || event.key.toLowerCase() !== "r") {
+      if (!event.repeat) {
+        rrrTapCount = 0;
+        clearTimeout(rrrResetTimer);
+      }
+      return;
+    }
+
+    const target = event.target;
+    if ((target instanceof Element && target.closest("input, textarea, select, [contenteditable='true'], [contenteditable='']")) ||
+        event.ctrlKey || event.altKey || event.metaKey) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    if (event.repeat) return;
+
+    rrrTapCount += 1;
+    clearTimeout(rrrResetTimer);
+
+    if (rrrTapCount === 3) {
+      rrrTapCount = 0;
+      window.location.href = "https://makkapakka-7788.github.io/makkapakka/flashcard.html";
+      return;
+    }
+
+    rrrResetTimer = setTimeout(function () {
+      rrrTapCount = 0;
+    }, 850);
+  }, true);
+})();
+</script>
+<style id="flashcard-repo-lock-style">
+#flashcard-repo-lock{position:fixed;inset:0;z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:20px;background:#080808;color:#eee;font-family:"Courier New",monospace}
+#flashcard-repo-lock *{box-sizing:border-box}
+#flashcard-repo-lock .lock-card{width:min(390px,100%);padding:30px;background:#101010;border:2px solid #555;text-align:center;box-shadow:0 12px 50px #000}
+#flashcard-repo-lock h1{font-size:24px;margin:0 0 12px}
+#flashcard-repo-lock p{color:#999;font-size:13px}
+#flashcard-repo-lock input{width:100%;margin:14px 0;padding:13px;background:#080808;border:1px solid #555;color:#eee;font:inherit}
+#flashcard-repo-lock button{width:100%;padding:12px;background:#eee;border:0;color:#111;font:bold 14px "Courier New",monospace;cursor:pointer}
+#flashcard-repo-lock .lock-error{min-height:18px;color:#ff7777}
+</style>
+</head>
+
+  <body>
+<div id="flashcard-repo-lock" role="dialog" aria-modal="true" aria-labelledby="flashcard-repo-lock-title"><form class="lock-card" id="flashcard-repo-lock-form"><h1 id="flashcard-repo-lock-title">PASSWORD REQUIRED</h1><p>Enter the password to access this game.</p><input id="flashcard-repo-lock-input" type="password" placeholder="Enter password" autocomplete="off" required><p class="lock-error" id="flashcard-repo-lock-error" aria-live="polite"></p><button type="submit">UNLOCK GAME</button></form></div>
+    <canvas id="screen"></canvas>
+    <div id="ui"></div>
+    <div id="transition-layer"></div>
+
+```
+<script type="application/x-flashcard-locked" data-flashcard-type="">
+  let rCount = 0;
+  let rTimer = null;
+
+  document.addEventListener("keydown", function(e) {
+    if (e.key.toLowerCase() !== "r") {
+      return;
+    }
+
+    rCount++;
+
+    clearTimeout(rTimer);
+
+    rTimer = setTimeout(function() {
+      rCount = 0;
+    }, 700);
+
+    if (rCount === 3) {
+      rCount = 0;
+
+      window.location.href =
+        "https://makkapakka-7788.github.io/MAKKASENTPAKKING-PoRtfolio";
+    }
+  });
+
+</script>
+```
+
+  
+<script type="application/x-flashcard-locked" data-flashcard-type="module" src="https://makkapakka-7788.github.io/makkapakka/presence.js?game=car.f1"></script>
+<script type="application/x-flashcard-locked" data-flashcard-type="" id="flashcard-repo-lock-script">
+(()=>{const overlay=document.getElementById("flashcard-repo-lock");const form=document.getElementById("flashcard-repo-lock-form");const input=document.getElementById("flashcard-repo-lock-input");const error=document.getElementById("flashcard-repo-lock-error");if(!overlay||!form||!input||!error)return;document.documentElement.style.overflow="hidden";document.body.style.overflow="hidden";form.addEventListener("submit",e=>{e.preventDefault();if(input.value==="pness"){overlay.remove();document.documentElement.style.overflow="";document.body.style.overflow="";}else{error.textContent="Incorrect password. Try again.";input.select();}});input.focus();})();
+</script>
 </body>
 </html>
